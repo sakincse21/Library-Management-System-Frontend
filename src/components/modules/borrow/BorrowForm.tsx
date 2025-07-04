@@ -53,7 +53,7 @@ export function BorrowForm(props: IProps) {
         },
     })
 
-    const [AddBorrow, { isLoading, isSuccess }] = useAddBorrowMutation();
+    const [AddBorrow, { isLoading }] = useAddBorrowMutation();
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         const updateBody = { ...data }
         console.log('Updated Data: ', updateBody);
@@ -77,7 +77,7 @@ export function BorrowForm(props: IProps) {
                         Creating New Borrow Entry
                     </div>
                     :
-                    !isSuccess && <CardContent className="space-y-3">
+                    <CardContent className="space-y-3">
                         <h3 className="text-xl">{bookData.title}</h3>
                         <p><h5 className=" inline-block">Author:</h5> {bookData.author}</p>
                         <p><h5 className=" inline-block">ISBN:</h5> {bookData.isbn}</p>

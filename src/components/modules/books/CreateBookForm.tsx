@@ -38,7 +38,7 @@ export function CreateBookForm() {
   })
 
   const navigate = useNavigate();
-  const [AddBook, { isLoading, isSuccess }] = useAddBookMutation();
+  const [AddBook, { isLoading }] = useAddBookMutation();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log('Data: ', data);
     const res = await AddBook(data).unwrap();
@@ -61,7 +61,7 @@ export function CreateBookForm() {
             Creating New Book Entry
           </div>
           :
-          !isSuccess && <Form {...form}>
+          <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}

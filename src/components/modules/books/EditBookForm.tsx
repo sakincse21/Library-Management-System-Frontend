@@ -51,7 +51,7 @@ export function EditBookForm(props: IProps) {
     },
   })
 
-  const [UpdateBook, { isLoading, isSuccess }] = useUpdateBookMutation();
+  const [UpdateBook, { isLoading }] = useUpdateBookMutation();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const updateBody = { ...data, id }
     console.log('Updated Data: ', updateBody);
@@ -75,7 +75,7 @@ export function EditBookForm(props: IProps) {
             Updating Book
           </div>
           :
-          !isSuccess && <Form {...form}>
+          <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
