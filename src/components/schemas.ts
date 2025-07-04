@@ -31,7 +31,7 @@ export const sortByList = [{value:'Name',key:'title'}, {value:'Author',key:'auth
 
 export interface IQueryBody{
   filter:string,
-  page:number,
+  offset:number,
   sortBy:string,
   sort: string,
   limit: string

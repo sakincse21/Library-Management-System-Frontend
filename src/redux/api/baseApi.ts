@@ -9,7 +9,7 @@ export const bookApi = createApi({
     tagTypes: ['books', 'book', 'summary'],
     endpoints: (builder) => ({
         getAllBooks: builder.query({
-            query: (body:IQueryBody) => `/books?offset=${(body.page - 1) * 12}&filter=${body.filter}&sortBy=${body.sortBy}&sort=${body.sort}&limit=${body.limit}`,
+            query: (body:IQueryBody) => `/books?offset=${body.offset}&filter=${body.filter}&sortBy=${body.sortBy}&sort=${body.sort}&limit=${body.limit}`,
             providesTags: ['books']
         }),
         getSingleBooks: builder.query({

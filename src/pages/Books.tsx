@@ -29,7 +29,7 @@ const Books = () => {
   const dispatch = useAppDispatch();
   const { data, isLoading } = useGetAllBooksQuery({
     filter: filter === 'all' ? '' : filter,
-    page,
+    offset: ((page - 1) * parseInt(limit)),
     sortBy,
     sort,
     limit
