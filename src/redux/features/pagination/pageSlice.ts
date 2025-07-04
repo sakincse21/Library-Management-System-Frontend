@@ -22,7 +22,7 @@ const initialState: IInitialState = {
   prev: false,
   next: false,
   sort: 'asc',
-  sortBy: 'createdAt',
+  sortBy: 'title',
   limit: '12',
   filter: 'all'
 }
@@ -33,20 +33,20 @@ export const pageSlice = createSlice({
   reducers: {
     nextPage: (state) => {
       state.page=(state.page<state.totalPage)?state.page+1:state.totalPage;
-      state.next=(state.page==state.totalPage)?false:true;
-      state.prev=(state.page==1)?false:true;
+      state.next=(state.page===state.totalPage)?false:true;
+      state.prev=(state.page===1)?false:true;
     },
     prevPage: (state) => {
       state.page=(state.page-1)<=0?1:state.page-1;
-      state.prev=(state.page==1)?false:true;
-      state.next=(state.page==state.totalPage)?false:true;
+      state.prev=(state.page===1)?false:true;
+      state.next=(state.page===state.totalPage)?false:true;
     },
     setTotalPage: (state,action) => {
       state.totalCount=action.payload
       if(state.totalCount<=0) state.page=1;
       state.totalPage = Math.ceil(state.totalCount / state.perPage);
-      if(state.page>state.totalPage) state.page=state.totalPage;
-      if(state.totalPage>1) state.next=true;
+      if(state.page>state.totalPage) {state.page=state.totalPage;state.next=false}
+      if(state.totalPage>1 && state.totalPage>state.page) state.next=true;
       else state.next=false
       if(state.page<=1) state.prev=false
     },

@@ -27,7 +27,7 @@ const bookSchema = z.object({
 export default bookSchema;
 
 export const genres = ['FICTION', 'NON_FICTION', 'SCIENCE', 'HISTORY', 'BIOGRAPHY', 'FANTASY'];
-export const sortByList = [{value:'Name',key:'title'}, {value:'Author',key:'author'}, {value:'Creation Date',key:'createdAt'}]
+export const sortByList = [{value:'Name',key:'title'}, {value:'Author',key:'author'}, ] //{value:'Creation Date',key:'createdAt'}
 
 export interface IQueryBody{
   filter:string,
