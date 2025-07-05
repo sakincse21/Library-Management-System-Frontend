@@ -1,69 +1,108 @@
-# React + TypeScript + Vite
+# 📚 Minimal Library Management System – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, functional, and fully responsive frontend application for managing a library system. Built with **React**, **TypeScript**, **Redux Toolkit**, and **RTK Query**, this project allows users to manage books, borrow them, and view borrow summaries.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌐 Frontend: [Library Management Live](https://library-management-system-frontend-beta.vercel.app/)
+🔗 Backend: [Live Link](https://l2-b5-assignment3.vercel.app/)
+📁 Backend Repo: [Github](https://github.com/sakincse21/L2B5-Assignment3)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📌 Assignment Overview
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This project was developed as part of an assignment to demonstrate:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- REST API integration using **RTK Query**
+- State management with **Redux Toolkit**
+- **Book and Borrow** management features
+- Pagination, forms, validation, and summary
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🎯 Features Implemented
+
+### 📖 Book Management
+
+- View all books in grid with sorting & pagination.
+- Add new books using a type-safe form.
+- Edit book details with form pre-filled.
+- Delete books with confirmation dialog.
+- Implemented business logic that If book `copies === 0`, it becomes **Unavailable**.
+
+### 🤝 Borrow Books
+
+- Borrow a book with `quantity` and `due date`.
+- Form validation:
+  - Quantity cannot exceed available copies.
+  - Future dates only.
+- After borrowing:
+  - Copies decrease.
+  - Book may become unavailable if all copies borrowed.
+  - Redirect to borrow summary with success message.
+
+### 📊 Borrow Summary
+
+- Aggregated summary showing:
+  - Book title, ISBN, and total quantity borrowed.
+- Fetched using a backend aggregation endpoint.
+
+---
+
+## 🧭 Routing Pages
+
+| Route               | Description            |
+| ------------------- | ---------------------- |
+| `/books`          | Book list with actions |
+| `/create-book`    | Add a new book         |
+| `/books/:id`      | Book detail view       |
+| `/edit-book/:id`  | Edit a book            |
+| `/borrow/:bookId` | Borrow a book          |
+| `/borrow-summary` | View borrow summary    |
+
+---
+
+## 🧰 Tech Stack
+
+| Layer            | Technology                                      |
+| ---------------- | ----------------------------------------------- |
+| Frontend         | React + TypeScript                              |
+| State Management | Redux Toolkit + RTK Query                       |
+| Forms            | React Hook Form + Zod                           |
+| API              | RESTful API (Node + Express + MongoDB/Mongoose) |
+| Styling          | Tailwind CSS                                    |
+| Notifications    | sonner (toast notifications)                    |
+
+---
+
+## 🛠️ Setup Instructions
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- Backend API running and accessible
+
+### Install Dependencies
+
+```bash
+npm install --force
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Start Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
