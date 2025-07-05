@@ -5,7 +5,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { errorToast, successToast } from "@/lib/toasts";
-import { useDeleteApiMutation, useGetSingleBooksQuery } from "@/redux/api/baseApi"
+import { useDeleteApiMutation, useGetSingleBooksQuery } from "@/redux/api/bookApi"
 import { Loader2Icon } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router";
 
@@ -44,7 +44,7 @@ const SingleBook = () => {
   return (
     <div className="w-full h-full flex justify-center items-center gap-4 mx-auto my-5">
       <Card className="w-[520px] shadow-none " >
-        <CardContent >
+        <CardContent className="space-y-4" >
           <h3 className="text-xl">{book.title}</h3>
           <div><h5 className=" inline-block">Author:</h5> {book.author}</div>
           <div><h5 className=" inline-block">ISBN:</h5> {book.isbn}</div>
@@ -89,7 +89,7 @@ const SingleBook = () => {
                       </AlertDialogHeader>
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction  onClick={() => deleteConfirm()}>Confirm</AlertDialogAction>
+                        <AlertDialogAction className="bg-red-600 " onClick={() => deleteConfirm()}>Confirm</AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                 }

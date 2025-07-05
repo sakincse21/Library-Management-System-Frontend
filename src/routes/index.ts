@@ -4,6 +4,7 @@ import Borrow from "@/pages/BorrowPage";
 import BorrowSummaryPage from "@/pages/BorrowSummaryPage";
 import CreateBook from "@/pages/CreateBook";
 import EditBook from "@/pages/EditBook";
+import Home from "@/pages/Home";
 import SingleBook from "@/pages/SingleBook";
 import { createBrowserRouter } from "react-router";
 
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
             },
             {
                 index: true,
-                Component: Books
+                Component: Home
             }
         ]
     }

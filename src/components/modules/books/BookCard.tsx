@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/alert-dialog'
 
 import { errorToast, successToast } from "@/lib/toasts";
-import { useDeleteApiMutation } from "@/redux/api/baseApi";
+import { useDeleteApiMutation } from "@/redux/api/bookApi";
 import { LoaderIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 
@@ -54,11 +54,16 @@ const BookCard = (props: IBookCardProps) => {
                 </p>
             </CardContent>
             <CardFooter className="mt-auto flex flex-col gap-3 w-full">
-                <Link to={`/borrow/${book._id}`} className="w-full">
-                    <Button disabled={!book.available} className="w-full">
-                        Borrow
-                    </Button>
-                </Link>
+                <Button disabled={!book.available} className="w-full">
+                    {
+                        book.available ?
+                            <Link to={`/borrow/${book._id}`} className="w-full">
+                                Borrow
+                            </Link>
+                            :
+                            'Borrow'
+                    }
+                </Button>
                 <div className="w-full flex justify-between">
                     <Link to={`/edit-book/${book._id}`}>
                         <Button className=" cursor-pointer">

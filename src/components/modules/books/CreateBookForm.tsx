@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import bookSchema from "@/components/schemas"
 import { genres } from "@/components/schemas"
-import { useAddBookMutation } from "@/redux/api/baseApi"
+import { useAddBookMutation } from "@/redux/api/bookApi"
 import { Card } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import type z from "zod"
