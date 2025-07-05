@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import bookSchema, { genres, type IBook } from "@/components/schemas"
-import { useDeleteApiMutation, useUpdateBookMutation } from "@/redux/api/baseApi"
+import { useDeleteApiMutation, useUpdateBookMutation } from "@/redux/api/bookApi"
 import { Card } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Loader2Icon } from "lucide-react"

@@ -1,7 +1,7 @@
 import ErrorScreen from "@/components/layout/ErrorScreen";
 import LoadingScreen from "@/components/layout/LoadingScreen";
 import { BorrowForm } from "@/components/modules/borrow/BorrowForm";
-import { useGetSingleBooksQuery } from "@/redux/api/baseApi";
+import { useGetSingleBooksQuery } from "@/redux/api/bookApi";
 import { useParams } from "react-router"
 
 

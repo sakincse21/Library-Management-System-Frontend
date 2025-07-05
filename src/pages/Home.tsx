@@ -1,3 +1,4 @@
+import { useGetAllBooksQuery } from "@/redux/api/bookApi"
 import {
   Pagination,
   PaginationContent,
@@ -6,28 +7,27 @@ import {
 } from '@/components/ui/pagination'
 
 
+import BookCard from "@/components/modules/books/BookCard"
 import { genres, type IBook, sortByList } from "@/components/schemas";
 import LoadingScreen from "@/components/layout/LoadingScreen";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { nextPage, prevPage, setFilter, setLimit, setPerPage, setSort, setSortBy, setTotalPage } from "@/redux/features/pagination/tableSlice";
+import { nextPage, prevPage, setFilter, setLimit, setPerPage, setSort, setSortBy, setTotalPage } from "@/redux/features/pagination/pageSlice";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Table, TableBody, TableCaption,  TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import BooksRow from "@/components/modules/books/BooksRow";
-import { useGetAllTableBooksQuery } from '@/redux/api/bookApi';
-const Books = () => {
-  const filter = useAppSelector((state) => state.tablePage.filter);
-  const sortBy = useAppSelector((state) => state.tablePage.sortBy);
-  const sort = useAppSelector((state) => state.tablePage.sort);
-  const limit = useAppSelector((state) => state.tablePage.limit);
-  const page = useAppSelector((state) => state.tablePage.page);
-  const totalPage = useAppSelector((state) => state.tablePage.totalPage);
-  const prev = useAppSelector((state) => state.tablePage.prev);
-  const next = useAppSelector((state) => state.tablePage.next);
+
+const Home = () => {
+  const filter = useAppSelector((state) => state.page.filter);
+  const sortBy = useAppSelector((state) => state.page.sortBy);
+  const sort = useAppSelector((state) => state.page.sort);
+  const limit = useAppSelector((state) => state.page.limit);
+  const page = useAppSelector((state) => state.page.page);
+  const totalPage = useAppSelector((state) => state.page.totalPage);
+  const prev = useAppSelector((state) => state.page.prev);
+  const next = useAppSelector((state) => state.page.next);
   const dispatch = useAppDispatch();
-  const { data, isLoading } = useGetAllTableBooksQuery({
+  const { data, isLoading } = useGetAllBooksQuery({
     filter: filter === 'all' ? '' : filter,
     offset: ((page - 1) * parseInt(limit)),
     sortBy,
@@ -90,7 +90,7 @@ const Books = () => {
         <span>
           <Select
             value={sortBy}
-            onValueChange={(value) => dispatch(setSortBy(value))}
+            onValueChange={(value)=>dispatch(setSortBy(value))}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Sort By" />
@@ -112,7 +112,7 @@ const Books = () => {
         <span>
           <Select
             value={sort}
-            onValueChange={(value) => dispatch(setSort(value))}
+            onValueChange={(value)=>dispatch(setSort(value))}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Sort Type" />
@@ -138,7 +138,7 @@ const Books = () => {
         <span>
           <Select
             value={limit}
-            onValueChange={(value) => dispatch(setLimit(value))}
+            onValueChange={(value)=>dispatch(setLimit(value))}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Show" />
@@ -170,29 +170,10 @@ const Books = () => {
       </div>
       {!isLoading && (
         allBooks ?
-          <div className=" w-full">
-            <Table>
-              <TableCaption className="text-foreground">
-                A list of all book records.
-              </TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>ISBN</TableHead>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Author</TableHead>
-                  <TableHead>Genre</TableHead>
-                  <TableHead>Copies</TableHead>
-                  <TableHead>Available</TableHead>
-                  <TableHead colSpan={4} className="text-center">Actions</TableHead>
-                  {/* <TableHead className="text-right">Amount</TableHead> */}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {allBooks?.map((book: IBook) => (
-                  <BooksRow  book={book} key={book?._id}/>
-                ))}
-              </TableBody>
-            </Table>
+          <div className=" w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+            {
+              allBooks?.map((book: IBook) => <BookCard book={book} key={book?._id} />)
+            }
           </div>
           :
           <p className="text-center text-xl">No Books Found 😓</p>
@@ -221,4 +202,4 @@ const Books = () => {
   )
 }
 
-export default Books
+export default Home

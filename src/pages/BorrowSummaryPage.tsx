@@ -1,7 +1,7 @@
 import ErrorScreen from "@/components/layout/ErrorScreen"
 import LoadingScreen from "@/components/layout/LoadingScreen"
 import BorrowSummary from "@/components/modules/borrow/BorrowSummary"
-import { useGetBorrowSummaryQuery } from "@/redux/api/baseApi"
+import { useGetBorrowSummaryQuery } from "@/redux/api/bookApi"
 
 const BorrowSummaryPage = () => {
   const { data, isLoading } = useGetBorrowSummaryQuery({}, {
